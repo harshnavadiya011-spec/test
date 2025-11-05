@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velox Solution | Home</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+    }
+
+    /* ==============================
+       Sticky Search Section
+    ============================== */
+    .sticky-search {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      height: 420px;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sticky-search::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.5);
+      animation: fadeBackground 20s infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes fadeBackground {
+      0% {
+        background-image: url('https://images.pexels.com/photos/4792479/pexels-photo-4792479.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      }
+
+      12% {
+        background-image: url('https://images.pexels.com/photos/8861952/pexels-photo-8861952.jpeg?auto=compress&cs=tinysrgb&w=1620');
+     }
+
+      24% {
+        background-image: url('https://images.pexels.com/photos/4870700/pexels-photo-4870700.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      }
+
+      36% {
+        background-image: url('https://images.pexels.com/photos/4239144/pexels-photo-4239144.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      }
+
+      48% {
+        background-image: url('https://images.pexels.com/photos/6812789/pexels-photo-6812789.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      }
+
+      60% {
+        background-image: url('https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg?auto=compress&cs=tinysrgb&w=800');
+      }
+
+      72% {
+        background-image: url('https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=800');
+      }
+
+      84% {
+        background-image: url('https://images.pexels.com/photos/6195128/pexels-photo-6195128.jpeg?auto=compress&cs=tinysrgb&w=800');
+      }
+
+      100% {
+        background-image: url('https://images.pexels.com/photos/4099358/pexels-photo-4099358.jpeg?auto=compress&cs=tinysrgb&w=800');
+      }
+    }
+
+    /* ==============================
+   Logo Section - Rounded Logo
+============================== */
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 25px;
+      margin-bottom: 20px;
+    }
+
+    .logo-container img {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      /* Makes logo perfectly circular */
+      object-fit: cover;
+      /* Blue accent border */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .logo-container img:hover {
+      transform: scale(3);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .sticky-search h1 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    .search-container {
+      max-width: 500px;
+      margin: 25px auto 0;
+      display: flex;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-container input {
+      border: none;
+      flex: 1;
+      padding: 10px 20px;
+      outline: none;
+      background: transparent;
+    }
+
+    .search-container button {
+      border: none;
+      background: #007bff;
+      color: white;
+      padding: 10px 25px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .search-container button:hover {
+      background: #0056b3;
+    }
+
+    /* Admin Button */
+    .admin-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #007bff;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .admin-btn:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    /* ==============================
+       Services Section
+    ============================== */
+    .services {
+      padding: 70px 0;
+    }
+
+    .services h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      color: #003366;
+    }
+
+    .service-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-card img {
+      height: 180px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .service-card .card-body {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .footer {
+      background: #003366;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="./dashboard" class="admin-btn d-flex align-items-center">
+    <i class="bi bi-person-gear me-2"></i> Admin
+  </a>
+
+  <!-- Sticky Search Section -->
+  <section class="sticky-search">
+    <!-- Logo Inside Header -->
+    <div class="logo-container">
+      <a href="./index">
+        <img src="/static/images/velox-logo.png" alt="Velox Solution Logo">
+      </a>
+    </div>
+
+    <h1>Find the Service You Need</h1>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search for services..." onkeyup="filterServices()">
+      <button onclick="filterServices()">Search</button>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services container">
+    <h2>Our Services</h2>
+
+    <div class="row g-4" id="serviceList">
+      <!-- Each service card -->
+      <div class="col-md-4 service-item" data-name="ac cleaning air conditioning">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/4792479/pexels-photo-4792479.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="AC Cleaning">
+          <div class="card-body">
+            <h5 class="card-title">AC Cleaning</h5>
+            <p class="card-text">Professional AC servicing to keep your air fresh and cooling efficient.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 service-item" data-name="solar panel cleaning">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/8861952/pexels-photo-8861952.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Solar Cleaning">
+          <div class="card-body">
+            <h5 class="card-title">Solar Panel Cleaning</h5>
+            <p class="card-text">Enhance solar performance with spotless panel cleaning services.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 service-item" data-name="car wash">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/4870700/pexels-photo-4870700.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Car Wash">
+          <div class="card-body">
+            <h5 class="card-title">Car Wash</h5>
+            <p class="card-text">Eco-friendly car washing and detailing at your doorstep.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 service-item" data-name="home cleaning house cleaning">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/4239144/pexels-photo-4239144.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Home Cleaning">
+          <div class="card-body">
+            <h5 class="card-title">Home Cleaning</h5>
+            <p class="card-text">Professional deep home cleaning with safe, eco-friendly products.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 service-item" data-name="water tank cleaning">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/1456946/pexels-photo-1456946.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Water Tank Cleaning">
+          <div class="card-body">
+            <h5 class="card-title">Water Tank Cleaning</h5>
+            <p class="card-text">Ensure pure water with our advanced and safe water tank cleaning.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 service-item" data-name="garden cleaning outdoor maintenance">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Garden Cleaning">
+          <div class="card-body">
+            <h5 class="card-title">Garden Cleaning</h5>
+            <p class="card-text">Keep your surroundings green and fresh with our garden experts.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- More Services -->
+      <div class="col-md-4 service-item" data-name="sofa cleaning upholstery">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Sofa Cleaning">
+          <div class="card-body">
+            <h5 class="card-title">Sofa Cleaning</h5>
+            <p class="card-text">Deep cleaning to remove stains and dust, keeping your sofa spotless.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 service-item" data-name="office cleaning corporate service">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/6195128/pexels-photo-6195128.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Office Cleaning">
+          <div class="card-body">
+            <h5 class="card-title">Office Cleaning</h5>
+            <p class="card-text">Professional cleaning for offices ensuring a productive environment.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 service-item" data-name="carpet cleaning deep cleaning">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/4099358/pexels-photo-4099358.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Carpet Cleaning">
+          <div class="card-body">
+            <h5 class="card-title">Carpet Cleaning</h5>
+            <p class="card-text">Get rid of dust, allergens, and stains with our advanced carpet care.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <p>© 2025 Velox Solution. All Rights Reserved.</p>
+  </div>
+
+  <script>
+    // Live search filter
+    function filterServices() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const items = document.querySelectorAll('.service-item');
+      items.forEach(item => {
+        const name = item.getAttribute('data-name');
+        if (name.includes(input)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>
