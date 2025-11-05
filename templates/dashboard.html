@@ -18,6 +18,31 @@
       background: #f8f9fa;
     }
 
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 25px;
+      margin-bottom: 20px;
+    }
+
+    .logo-container img {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      /* Makes logo perfectly circular */
+      object-fit: cover;
+      /* Blue accent border */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .logo-container img:hover {
+      transform: scale(1);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+
+
     /* Sidebar */
     .sidebar {
       height: 100vh;
@@ -99,8 +124,7 @@
 
   <div class="sidebar">
     <div class="text-center mb-4">
-      <img src="/static/images/velox-logo.png" alt="VELOX Logo" height="60" class="mb-2">
-      <a href="./dashboard"></a>
+      <p class="logo-container"><img src="/static/images/velox-logo.png" alt="VELOX Logo" height="60" class="mb-2"></p>
     </div>
     <a href="./dashboard">Dashboard</a>
     <a href="./login">Login</a>

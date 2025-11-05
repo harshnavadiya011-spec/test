@@ -4,10 +4,10 @@ from extensions import db
 from models.data import Data
 from schema.data import DataSchema
 
-bp = Blueprint("api", __name__)
+data_bp = Blueprint("api", __name__)
 data_schema = DataSchema()
 
-@bp.route("/data", methods=["GET"])
+@data_bp.route("/data", methods=["GET"])
 @jwt_required()
 def get_data():
     try:
@@ -49,7 +49,7 @@ def get_data():
 
 
 
-@bp.route("/data/<int:id>", methods=["GET"])
+@data_bp.route("/data/<int:id>", methods=["GET"])
 @jwt_required()
 def get(id):
     data = Data.query.get(id)
@@ -63,7 +63,7 @@ def get(id):
                     }), 200
 
 
-@bp.route("/data", methods=["POST"])
+@data_bp.route("/data", methods=["POST"])
 @jwt_required()
 def add_data():
     
@@ -87,7 +87,7 @@ def add_data():
 
 
 
-@bp.route("/data/<int:id>", methods=["PUT"])
+@data_bp.route("/data/<int:id>", methods=["PUT"])
 @jwt_required()
 def update_data(id):
     record = Data.query.get(id)
@@ -103,7 +103,7 @@ def update_data(id):
 
 
 
-@bp.route("/data/<int:id>", methods=["DELETE"])
+@data_bp.route("/data/<int:id>", methods=["DELETE"])
 @jwt_required()
 def delete_data(id):
     data = Data.query.get(id)
@@ -117,7 +117,7 @@ def delete_data(id):
 
 
 
-@bp.route("/data/export", methods=["GET"])
+@data_bp.route("/data/export", methods=["GET"])
 @jwt_required()
 def export_data():
     search = request.args.get("search", "").strip()

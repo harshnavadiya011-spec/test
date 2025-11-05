@@ -8,7 +8,7 @@
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
 
   <style>
     body {
@@ -21,21 +21,19 @@
        Sticky Search Section
     ============================== */
     .sticky-search {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      height: 420px;
-      color: white;
-      text-align: center;
+      position: relative;
+      height: 400px;
       overflow: hidden;
+      color: white;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      text-align: center;
     }
 
-    .sticky-search::before {
-      content: "";
+    /* Fade background layers */
+    .fade-bg {
       position: absolute;
       top: 0;
       left: 0;
@@ -43,52 +41,18 @@
       height: 100%;
       background-size: cover;
       background-position: center;
-      filter: brightness(0.5);
-      animation: fadeBackground 20s infinite alternate;
+      transition: opacity 2.5s ease-in-out;
+      opacity: 0;
       z-index: -1;
     }
 
-    @keyframes fadeBackground {
-      0% {
-        background-image: url('https://images.pexels.com/photos/4792479/pexels-photo-4792479.jpeg?auto=compress&cs=tinysrgb&w=1600');
-      }
-
-      12% {
-        background-image: url('https://images.pexels.com/photos/8861952/pexels-photo-8861952.jpeg?auto=compress&cs=tinysrgb&w=1620');
-     }
-
-      24% {
-        background-image: url('https://images.pexels.com/photos/4870700/pexels-photo-4870700.jpeg?auto=compress&cs=tinysrgb&w=1600');
-      }
-
-      36% {
-        background-image: url('https://images.pexels.com/photos/4239144/pexels-photo-4239144.jpeg?auto=compress&cs=tinysrgb&w=1600');
-      }
-
-      48% {
-        background-image: url('https://images.pexels.com/photos/6812789/pexels-photo-6812789.jpeg?auto=compress&cs=tinysrgb&w=1600');
-      }
-
-      60% {
-        background-image: url('https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg?auto=compress&cs=tinysrgb&w=800');
-      }
-
-      72% {
-        background-image: url('https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=800');
-      }
-
-      84% {
-        background-image: url('https://images.pexels.com/photos/6195128/pexels-photo-6195128.jpeg?auto=compress&cs=tinysrgb&w=800');
-      }
-
-      100% {
-        background-image: url('https://images.pexels.com/photos/4099358/pexels-photo-4099358.jpeg?auto=compress&cs=tinysrgb&w=800');
-      }
+    .fade-bg.active {
+      opacity: 1;
     }
 
     /* ==============================
-   Logo Section - Rounded Logo
-============================== */
+       Logo Section
+    ============================== */
     .logo-container {
       display: flex;
       justify-content: center;
@@ -101,15 +65,13 @@
       height: 100px;
       width: 100px;
       border-radius: 50%;
-      /* Makes logo perfectly circular */
       object-fit: cover;
-      /* Blue accent border */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .logo-container img:hover {
-      transform: scale(3);
+      transform: scale(1.15);
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
     }
 
@@ -117,6 +79,7 @@
       font-size: 2.3rem;
       font-weight: 700;
       margin-top: 10px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
     }
 
     .search-container {
@@ -150,7 +113,9 @@
       background: #0056b3;
     }
 
-    /* Admin Button */
+    /* ==============================
+       Admin Button
+    ============================== */
     .admin-btn {
       position: fixed;
       top: 20px;
@@ -210,6 +175,9 @@
       padding: 20px;
     }
 
+    /* ==============================
+       Footer
+    ============================== */
     .footer {
       background: #003366;
       color: white;
@@ -227,17 +195,19 @@
 
   <!-- Sticky Search Section -->
   <section class="sticky-search">
-    <!-- Logo Inside Header -->
+    <div class="fade-bg" id="bg1"></div>
+    <div class="fade-bg" id="bg2"></div>
+
     <div class="logo-container">
       <a href="./index">
-        <img src="/static/images/velox-logo.png" alt="Velox Solution Logo">
+        <img src="/static/images/velox-logo.png" alt="Velox Solution Logo" />
       </a>
     </div>
 
     <h1>Find the Service You Need</h1>
 
     <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search for services..." onkeyup="filterServices()">
+      <input type="text" id="searchInput" placeholder="Search for services..." onkeyup="filterServices()" />
       <button onclick="filterServices()">Search</button>
     </div>
   </section>
@@ -247,7 +217,7 @@
     <h2>Our Services</h2>
 
     <div class="row g-4" id="serviceList">
-      <!-- Each service card -->
+
       <div class="col-md-4 service-item" data-name="ac cleaning air conditioning">
         <div class="card service-card">
           <img src="https://images.pexels.com/photos/4792479/pexels-photo-4792479.jpeg?auto=compress&cs=tinysrgb&w=800"
@@ -320,7 +290,6 @@
         </div>
       </div>
 
-      <!-- More Services -->
       <div class="col-md-4 service-item" data-name="sofa cleaning upholstery">
         <div class="card service-card">
           <img src="https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=800"
@@ -356,6 +325,32 @@
           </div>
         </div>
       </div>
+
+      <div class="col-md-4 service-item" data-name="pest control insects cleaning">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/8486984/pexels-photo-8486984.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Pest Control">
+          <div class="card-body">
+            <h5 class="card-title">Pest Control</h5>
+            <p class="card-text">Safe and effective pest control solutions for your home or office.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 service-item" data-name="cctv installation security camera surveillance">
+        <div class="card service-card">
+          <img src="https://images.pexels.com/photos/5591792/pexels-photo-5591792.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="CCTV Installation">
+          <div class="card-body">
+            <h5 class="card-title">CCTV Installation</h5>
+            <p class="card-text">Secure your premises with professional CCTV camera installation.</p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </section>
 
@@ -364,21 +359,52 @@
   </div>
 
   <script>
-    // Live search filter
+    // Background crossfade animation
+    const images = [
+      'https://images.pexels.com/photos/4792479/pexels-photo-4792479.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/8861952/pexels-photo-8861952.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/4870700/pexels-photo-4870700.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/4239144/pexels-photo-4239144.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/1456946/pexels-photo-1456946.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/6195128/pexels-photo-6195128.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/4099358/pexels-photo-4099358.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/8486984/pexels-photo-8486984.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/5591792/pexels-photo-5591792.jpeg?auto=compress&cs=tinysrgb&w=1600'
+    ];
+
+    images.forEach(src => { const img = new Image(); img.src = src; });
+
+    let index = 0;
+    const bg1 = document.getElementById('bg1');
+    const bg2 = document.getElementById('bg2');
+    let active = bg1;
+
+    function changeBackground() {
+      const next = active === bg1 ? bg2 : bg1;
+      next.style.backgroundImage = `url('${images[index]}')`;
+      next.classList.add('active');
+      active.classList.remove('active');
+      active = next;
+      index = (index + 1) % images.length;
+    }
+
+    bg1.style.backgroundImage = `url('${images[0]}')`;
+    bg1.classList.add('active');
+    index = 1;
+    setInterval(changeBackground, 8000);
+
+    // Service search filter
     function filterServices() {
       const input = document.getElementById('searchInput').value.toLowerCase();
       const items = document.querySelectorAll('.service-item');
       items.forEach(item => {
         const name = item.getAttribute('data-name');
-        if (name.includes(input)) {
-          item.style.display = '';
-        } else {
-          item.style.display = 'none';
-        }
+        item.style.display = name.includes(input) ? '' : 'none';
       });
     }
   </script>
-
 </body>
 
 </html>
