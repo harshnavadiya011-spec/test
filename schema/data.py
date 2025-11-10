@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields, validate
+from marshmallow import Schema, fields, validate, validates, ValidationError
 
 class DataSchema(Schema):
     name = fields.String(
@@ -17,3 +17,11 @@ class DataSchema(Schema):
             "invalid": "Age must be a number."
         }
     )
+
+    @validates("name")
+    def validate_name_length(self, value, **kwargs):
+        """Custom validation to enforce length between 2 and 30"""
+        if len(value.strip()) < 2:
+            raise ValidationError("Name must be at least 2 characters long.")
+        elif len(value.strip()) > 30:
+            raise ValidationError("Name cannot exceed 30 characters.")

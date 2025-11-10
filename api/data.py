@@ -40,7 +40,8 @@ def get_data():
             {
                 "id": d.id,
                 "name": d.name,
-                "age": d.age
+                "age": d.age,
+                "created_at" : d.created_at
             } for d in data.items
         ]
     }
@@ -82,8 +83,15 @@ def add_data():
     db.session.commit()
 
     return jsonify({
-        "message": f"Data {new_record} added successfully"
-    }), 201
+         "status": "success",
+         "message" : f"Data {new_record} added",
+         "data": {
+             "id": new_record.id,
+             "name": new_record.name,
+             "age": new_record.age,
+             "created_at": new_record.created_at
+         }
+        }), 201
 
 
 
@@ -99,7 +107,17 @@ def update_data(id):
     record.name = data.get("name", record.name)
     record.age = data.get("age", record.age)
     db.session.commit()
-    return jsonify({"message": f"Data {id} updated successfully"}), 200
+    return jsonify({
+        "status" : "success",
+        "message": f"Data {id} updated successfully",
+        "data" : {
+            "id": record.id,
+             "name": record.name,
+             "age": record.age,
+             "created_at": record.created_at,
+             "updated_at": record.updated_at
+        }
+        }), 200
 
 
 
@@ -113,7 +131,17 @@ def delete_data(id):
     
     db.session.delete(data)
     db.session.commit()
-    return jsonify({"message": f"Data {id} deleted successfully"}), 200
+    return jsonify({
+        "message": "Data deleted successfully",
+        "status" : "success",
+        "data" : {
+            "id" : data.id,
+            "name" :data.name,
+            "age" : data.age,
+            "created_at" : data.created_at,
+            "updated_at" :data.updated_at
+        }
+        }), 200
 
 
 
